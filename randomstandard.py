@@ -6,7 +6,7 @@ from rlbot.utils.game_state_util import GameState, BallState, CarState, Physics,
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
-# How high the ball is on kickoff (ball radius is 92.75)
+# How high the ball is on kickoff (ball radius is 92.75), you can have a hoops style kickoff with 800
 kickoff_height = 100 
 
 
