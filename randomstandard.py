@@ -6,7 +6,7 @@ from rlbot.utils.game_state_util import GameState, BallState, CarState, Physics,
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
-# How high the ball is on kickoff.
+# How high the ball is on kickoff
 kickoff_height = 100
 
 
