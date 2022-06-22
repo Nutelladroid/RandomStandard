@@ -45,13 +45,13 @@ class RandomStandard(BaseScript):
                      car_states = {}
                      for p in range(2,3):
                          car = packet.game_cars[p]
-                         pos = Vector3((3000+p*150), (5500+p*150), (2000))
-                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 0), angular_velocity=Vector3(0, 0, 0)))
+                         pos = Vector3((3000+p*150), (5500+p*150), (80))
+                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 150), angular_velocity=Vector3(0, 0, 0)))
                          car_states[p] = car_state
                      for p in range(5,6):
                          car = packet.game_cars[p]
-                         pos = Vector3(-(3000+p*150), -(5500+p*150), (2000))
-                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 0), angular_velocity=Vector3(0, 0, 0)))
+                         pos = Vector3(-(3000+p*150), -(5500+p*150), (80))
+                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 150), angular_velocity=Vector3(0, 0, 0)))
                          car_states[p] = car_state
                      self.paused_car_states = car_states
                      self.game_state = GameState(cars=car_states)
@@ -61,13 +61,13 @@ class RandomStandard(BaseScript):
                      car_states = {}
                      for p in range(1,3):
                          car = packet.game_cars[p]
-                         pos = Vector3((3000+p*150), (5500+p*150), (2000))
-                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 0), angular_velocity=Vector3(0, 0, 0)))
+                         pos = Vector3((3000+p*150), (5500+p*150), (80))
+                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 150), angular_velocity=Vector3(0, 0, 0)))
                          car_states[p] = car_state
                      for p in range(4,6):
                          car = packet.game_cars[p]
-                         pos = Vector3(-(3000+p*150), -(5500+p*150), (2000))
-                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 0), angular_velocity=Vector3(0, 0, 0)))
+                         pos = Vector3(-(3000+p*150), -(5500+p*150), (80))
+                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 150), angular_velocity=Vector3(0, 0, 0)))
                          car_states[p] = car_state
                      self.paused_car_states = car_states
                      self.game_state = GameState(cars=car_states)
