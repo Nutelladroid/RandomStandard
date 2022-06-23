@@ -6,7 +6,7 @@ from rlbot.utils.game_state_util import GameState, BallState, CarState, Physics,
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
-# How high the ball is on kickoff (ball radius is 92.75), you can have a hoops style kickoff with 800
+# How high the ball is on kickoff (ball radius is 92.75)
 kickoff_height = 100 
 
 
@@ -17,23 +17,33 @@ class RandomStandard(BaseScript):
         super().__init__("Random Standard")
 
     def start(self):
+        old_score = 0
+        gameM = 3
         while True:
+         
+            # time.sleep(0.5)
+
             # when packet available
             packet = self.wait_game_tick_packet()
 
             if not packet.game_info.is_round_active:
                 continue
                 
-            # Picks random mode on kickoff.
-            if packet.game_info.is_kickoff_pause and round(packet.game_ball.physics.location.z) != kickoff_height:
-             #random number between 0 and 4
-             gameM = random.randint(1, 3)
-             
-             #change height of ball
-             ball_state = BallState(Physics(location=Vector3(z=kickoff_height), velocity=Vector3(0, 0, 0)))
-             self.set_game_state(GameState(ball=ball_state))
-             # self.set_game_state(GameState(game_info=GameInfoState(game_speed=1)))
+            # # Picks random mode on kickoff.
+            # if packet.game_info.is_kickoff_pause and round(packet.game_ball.physics.location.z) != kickoff_height:
+             # #random number between 0 and 4
+             # gameM = random.randint(1, 3)
+          
+             # #change height of ball
+             # ball_state = BallState(Physics(location=Vector3(z=kickoff_height), velocity=Vector3(0, 0, 0)))
+             # self.set_game_state(GameState(ball=ball_state))
+             # # self.set_game_state(GameState(game_info=GameInfoState(game_speed=1)))
         
+            if packet.teams[0].score + packet.teams[1].score != old_score:
+                old_score = packet.teams[0].score + packet.teams[1].score
+                gameM = random.randint(1, 3)
+            
+            
             #Checks that there are 6 cars then teleports cars depending on mode
             if packet.num_cars == 6:
                  if gameM == 2:  
@@ -42,12 +52,12 @@ class RandomStandard(BaseScript):
                      for p in range(2,3):
                          car = packet.game_cars[p]
                          pos = Vector3((3000+p*150), (5500+p*150), (80))
-                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 150), angular_velocity=Vector3(0, 0, 0)))
+                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 0), angular_velocity=Vector3(0, 0, 0)))
                          car_states[p] = car_state
                      for p in range(5,6):
                          car = packet.game_cars[p]
                          pos = Vector3(-(3000+p*150), -(5500+p*150), (80))
-                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 150), angular_velocity=Vector3(0, 0, 0)))
+                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 0), angular_velocity=Vector3(0, 0, 0)))
                          car_states[p] = car_state
                      self.paused_car_states = car_states
                      self.game_state = GameState(cars=car_states)
@@ -58,12 +68,12 @@ class RandomStandard(BaseScript):
                      for p in range(1,3):
                          car = packet.game_cars[p]
                          pos = Vector3((3000+p*150), (5500+p*150), (80))
-                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 150), angular_velocity=Vector3(0, 0, 0)))
+                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 0), angular_velocity=Vector3(0, 0, 0)))
                          car_states[p] = car_state
                      for p in range(4,6):
                          car = packet.game_cars[p]
                          pos = Vector3(-(3000+p*150), -(5500+p*150), (80))
-                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 150), angular_velocity=Vector3(0, 0, 0)))
+                         car_state = CarState(boost_amount=0, physics=Physics(location=pos, rotation=Rotator(yaw=0, pitch=0, roll=0), velocity=Vector3(0, 0, 0), angular_velocity=Vector3(0, 0, 0)))
                          car_states[p] = car_state
                      self.paused_car_states = car_states
                      self.game_state = GameState(cars=car_states)
