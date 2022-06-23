@@ -18,9 +18,6 @@ class RandomStandard(BaseScript):
 
     def start(self):
         while True:
-         
-            time.sleep(0.5)
-
             # when packet available
             packet = self.wait_game_tick_packet()
 
@@ -31,8 +28,7 @@ class RandomStandard(BaseScript):
             if packet.game_info.is_kickoff_pause and round(packet.game_ball.physics.location.z) != kickoff_height:
              #random number between 0 and 4
              gameM = random.randint(1, 3)
-             #Delay to make sure bots teleport
-             time.sleep(0.1)
+             
              #change height of ball
              ball_state = BallState(Physics(location=Vector3(z=kickoff_height), velocity=Vector3(0, 0, 0)))
              self.set_game_state(GameState(ball=ball_state))
