@@ -136,6 +136,7 @@ class RandomStandard(BaseScript):
                     car_state = CarState(boost_amount=34, physics=Physics(location=pos, rotation=Rotator(yaw=yaw, pitch=0, roll=0), velocity=Vector3(0, 0, 0),
                             angular_velocity=Vector3(0, 0, 0)))
                     car_states[p] = car_state
+            ball_state = BallState(Physics(location=Vector3(0, 0, 0), velocity=Vector3(0,0,0)))
             self.paused_car_states = car_states
             self.game_state = GameState(cars=car_states)
             self.set_game_state(self.game_state)
