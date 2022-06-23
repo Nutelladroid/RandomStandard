@@ -7,9 +7,9 @@ from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
 #GameMode Probability, whole numbers only
-ones_prob = 45
-twos_prob = 45
-threes_prob = 10
+ones_prob = 33
+twos_prob = 33
+threes_prob = 33
 
 
 
