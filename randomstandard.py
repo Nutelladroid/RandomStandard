@@ -6,7 +6,7 @@ from rlbot.utils.game_state_util import GameState, BallState, CarState, Physics,
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
-#GameMode Probability, set all of them to same value for equal
+#GameMode Probability, whole numbers only
 ones_prob = 45
 twos_prob = 45
 threes_prob = 10
