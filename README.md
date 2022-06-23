@@ -4,3 +4,4 @@ It works by teleporting 0, 2 or 4 bots outside the stadium after every goal.
 
 You can change the probability of each mode appearing at the top of the .py file.
 You can also enable or disable simulated kickoff for when goal reset is disabled.
+Demo: https://www.youtube.com/watch?v=bzw3wnuuX8g
