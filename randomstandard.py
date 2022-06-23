@@ -92,52 +92,53 @@ class RandomStandard(BaseScript):
                      self.game_state = GameState(cars=car_states)
                      self.set_game_state(self.game_state)
     def setup_kickoff(self, packet):
-        car_states = {}
-        num_to_select = 3      # set the number to select here.
-        rand_kick = random.sample(range(5), num_to_select)
-        for p in range(packet.num_cars):
-            car = packet.game_cars[p]
-            if car.team == 0:
-                if rand_kick[p] == 0:
-                    pos = Vector3(-2048, -2560, 17)
-                    yaw = np.pi * 0.25
-                elif rand_kick[p] == 1:
-                    pos = Vector3(2048, -2560, 17)
-                    yaw = np.pi * 0.75
-                elif rand_kick[p] == 2:
-                    pos = Vector3(-256.0, -3840, 17)
-                    yaw = np.pi * 0.5
-                elif rand_kick[p] == 3:
-                    pos = Vector3(256.0, -3840, 17)
-                    yaw = np.pi * 0.5
-                elif rand_kick[p] == 4:
-                    pos = Vector3(0.0, -4608, 17)
-                    yaw = np.pi * 0.5
-                car_state = CarState(boost_amount=34, physics=Physics(location=pos, rotation=Rotator(yaw=yaw, pitch=0, roll=0), velocity=Vector3(0, 0, 0),
-                        angular_velocity=Vector3(0, 0, 0)))
-                car_states[p] = car_state
-            elif car.team == 1:
-                if rand_kick[p-3] == 0:
-                    pos = Vector3(2048, 2560, 17)
-                    yaw = np.pi * -0.75
-                elif rand_kick[p-3] == 1:
-                    pos = Vector3(-2048, 2560, 17)
-                    yaw = np.pi * -0.25
-                elif rand_kick[p-3] == 2:
-                    pos = Vector3(256.0, 3840, 17)
-                    yaw = np.pi * -0.5
-                elif rand_kick[p-3] == 3:
-                    pos = Vector3(-256.0, 3840, 17)
-                    yaw = np.pi * -0.5
-                elif rand_kick[p-3] == 4:
-                    pos = Vector3(0.0, 4608, 17)
-                    yaw = np.pi * -0.5
-                car_state = CarState(boost_amount=34, physics=Physics(location=pos, rotation=Rotator(yaw=yaw, pitch=0, roll=0), velocity=Vector3(0, 0, 0),
-                        angular_velocity=Vector3(0, 0, 0)))
-                car_states[p] = car_state
-        self.paused_car_states = car_states
-        self.game_state = GameState(cars=car_states)
-        self.set_game_state(self.game_state)
+     if packet.num_cars == 6:
+            car_states = {}
+            num_to_select = 3      # set the number to select here.
+            rand_kick = random.sample(range(5), num_to_select)
+            for p in range(packet.num_cars):
+                car = packet.game_cars[p]
+                if car.team == 0:
+                    if rand_kick[p] == 0:
+                        pos = Vector3(-2048, -2560, 17)
+                        yaw = np.pi * 0.25
+                    elif rand_kick[p] == 1:
+                        pos = Vector3(2048, -2560, 17)
+                        yaw = np.pi * 0.75
+                    elif rand_kick[p] == 2:
+                        pos = Vector3(-256.0, -3840, 17)
+                        yaw = np.pi * 0.5
+                    elif rand_kick[p] == 3:
+                        pos = Vector3(256.0, -3840, 17)
+                        yaw = np.pi * 0.5
+                    elif rand_kick[p] == 4:
+                        pos = Vector3(0.0, -4608, 17)
+                        yaw = np.pi * 0.5
+                    car_state = CarState(boost_amount=34, physics=Physics(location=pos, rotation=Rotator(yaw=yaw, pitch=0, roll=0), velocity=Vector3(0, 0, 0),
+                            angular_velocity=Vector3(0, 0, 0)))
+                    car_states[p] = car_state
+                elif car.team == 1:
+                    if rand_kick[p-3] == 0:
+                        pos = Vector3(2048, 2560, 17)
+                        yaw = np.pi * -0.75
+                    elif rand_kick[p-3] == 1:
+                        pos = Vector3(-2048, 2560, 17)
+                        yaw = np.pi * -0.25
+                    elif rand_kick[p-3] == 2:
+                        pos = Vector3(256.0, 3840, 17)
+                        yaw = np.pi * -0.5
+                    elif rand_kick[p-3] == 3:
+                        pos = Vector3(-256.0, 3840, 17)
+                        yaw = np.pi * -0.5
+                    elif rand_kick[p-3] == 4:
+                        pos = Vector3(0.0, 4608, 17)
+                        yaw = np.pi * -0.5
+                    car_state = CarState(boost_amount=34, physics=Physics(location=pos, rotation=Rotator(yaw=yaw, pitch=0, roll=0), velocity=Vector3(0, 0, 0),
+                            angular_velocity=Vector3(0, 0, 0)))
+                    car_states[p] = car_state
+            self.paused_car_states = car_states
+            self.game_state = GameState(cars=car_states)
+            self.set_game_state(self.game_state)
        
    
 
