@@ -12,8 +12,8 @@ ones_prob = 33
 twos_prob = 33
 threes_prob = 33
 
-#Set to 1 if you want a fake kickoff when goal reset is disabled, 0 if you don't want kickoff
-fake_kickoff = 1
+#Set to 1 if you want a simulated kickoff when goal reset is disabled, 0 if you don't want kickoff
+simulated_kickoff = 1
 
 
 
@@ -49,8 +49,8 @@ class RandomStandard(BaseScript):
             if packet.teams[0].score + packet.teams[1].score != old_score:
                 old_score = packet.teams[0].score + packet.teams[1].score
                 
-                #Check if should fake kickoff
-                if disabled_goal_reset == 1 and fake_kickoff == 1:
+                #Check if should simulated kickoff
+                if disabled_goal_reset == 1 and simulated_kickoff == 1:
                   self.setup_kickoff(packet)
                 
                 # gameM = random.randint(1, 3)
