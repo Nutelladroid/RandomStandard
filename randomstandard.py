@@ -6,9 +6,10 @@ from rlbot.utils.game_state_util import GameState, BallState, CarState, Physics,
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
-# How high the ball is on kickoff (ball radius is 92.75)
-kickoff_height = 100 
-
+#GameMode Probability, set all of them to same value for equal
+ones_prob = 45
+twos_prob = 45
+threes_prob = 10
 
 
 
@@ -17,31 +18,24 @@ class RandomStandard(BaseScript):
         super().__init__("Random Standard")
 
     def start(self):
+        #Set up old score
         old_score = 0
-        gameM = 3
+        #Creates a list to control the probablitly of the random choice later
+        data_list = [1]*ones_prob + [2]*twos_prob + [3] * threes_prob
+        gameM = random.choice(data_list)
         while True:
-         
-            # time.sleep(0.5)
 
             # when packet available
             packet = self.wait_game_tick_packet()
 
             if not packet.game_info.is_round_active:
                 continue
-                
-            # # Picks random mode on kickoff.
-            # if packet.game_info.is_kickoff_pause and round(packet.game_ball.physics.location.z) != kickoff_height:
-             # #random number between 0 and 4
-             # gameM = random.randint(1, 3)
-          
-             # #change height of ball
-             # ball_state = BallState(Physics(location=Vector3(z=kickoff_height), velocity=Vector3(0, 0, 0)))
-             # self.set_game_state(GameState(ball=ball_state))
-             # # self.set_game_state(GameState(game_info=GameInfoState(game_speed=1)))
-        
+            
+            #Checks if goal has been scored and picks a random game mode
             if packet.teams[0].score + packet.teams[1].score != old_score:
                 old_score = packet.teams[0].score + packet.teams[1].score
-                gameM = random.randint(1, 3)
+                # gameM = random.randint(1, 3)
+                gameM = random.choice(data_list)
             
             
             #Checks that there are 6 cars then teleports cars depending on mode
