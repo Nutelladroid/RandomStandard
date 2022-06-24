@@ -7,7 +7,7 @@ from rlbot.utils.game_state_util import GameState, BallState, CarState, Physics,
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
-#GameMode Probability, whole numbers only
+#GameMode Probability, whole numbers only (think of it as adding tiles in a bag)
 ones_prob = 10
 twos_prob = 10
 threes_prob = 10
