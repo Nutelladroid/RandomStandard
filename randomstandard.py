@@ -7,12 +7,15 @@ from rlbot.utils.game_state_util import GameState, BallState, CarState, Physics,
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
-#GameMode Probability, whole numbers only (think of it as adding tiles in a bag)
+#GameMode Probability, whole numbers only
 ones_prob = 10
 twos_prob = 10
 threes_prob = 10
 fours_prob = 10
 fives_prob = 10
+
+#Enable Random (Enable = 1, Disable = 0), disabled will cycle from highest game mode to lowest
+random_enabled = 0
 
 #Set to 1 if you want a simulated kickoff when goal reset is disabled, 0 if you don't want kickoff
 simulated_kickoff = 1
@@ -28,7 +31,10 @@ class RandomStandard(BaseScript):
         old_score = 0
         #Creates a list to control the probablitly of the random choice later
         data_list = [1]*ones_prob + [2]*twos_prob
-        gameM = random.choice(data_list)
+        gameM = random.choice(data_list) * random_enabled
+        
+        #sets non random gamemode
+        
         
         #Sets goal reset disabled to 1 (True)
         disabled_goal_reset = 1
@@ -44,18 +50,22 @@ class RandomStandard(BaseScript):
              
             
             #sets random probability depending on mode
-            #2v2
-            if packet.num_cars == 4:
-                 data_list = [1]*ones_prob + [2]*twos_prob
-            #3v3
-            if packet.num_cars == 6:
-                 data_list = [1]*ones_prob + [2]*twos_prob + [3] * threes_prob
-            #4v4
-            if packet.num_cars == 8:
-                 data_list = [1]*ones_prob + [2]*twos_prob + [3] * threes_prob +[4] * fours_prob +[5] 
-            #5v5
-            if packet.num_cars == 10:
-                 data_list = [1]*ones_prob + [2]*twos_prob + [3] * threes_prob +[4] * fours_prob +[5] * fives_prob
+            if random_enabled == 1:
+                #2v2
+                if packet.num_cars == 4:
+                     data_list = [1]*ones_prob + [2]*twos_prob
+                #3v3
+                if packet.num_cars == 6:
+                     data_list = [1]*ones_prob + [2]*twos_prob + [3] * threes_prob
+                #4v4
+                if packet.num_cars == 8:
+                     data_list = [1]*ones_prob + [2]*twos_prob + [3] * threes_prob +[4] * fours_prob +[5] 
+                #5v5
+                if packet.num_cars == 10:
+                     data_list = [1]*ones_prob + [2]*twos_prob + [3] * threes_prob +[4] * fours_prob +[5] * fives_prob
+            else:
+                if gameM <1:
+                    gameM = round(packet.num_cars *0.5)
             
             #Check if kickoff
             if packet.game_info.is_kickoff_pause and packet.teams[0].score + packet.teams[1].score != 0:
@@ -71,7 +81,12 @@ class RandomStandard(BaseScript):
                   self.setup_kickoff(packet)
                 
                 # gameM = random.randint(1, 3)
-                gameM = random.choice(data_list)
+                if random_enabled == 1:
+                    gameM = random.choice(data_list)
+                else:
+                    gameM -=1
+                    if gameM <1:
+                        gameM = round(packet.num_cars *0.5)
             
             #Checks that there are 10 cars then teleports cars depending on mode
             if packet.num_cars == 10:
