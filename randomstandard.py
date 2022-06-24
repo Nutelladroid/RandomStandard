@@ -18,7 +18,7 @@ fives_prob = 10
 random_enabled = 1
 
 #Set to 1 if you want a simulated kickoff when goal reset is disabled, 0 if you don't want kickoff
-simulated_kickoff = 0
+simulated_kickoff = 1
 
 
 
