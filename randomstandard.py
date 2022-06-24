@@ -15,10 +15,10 @@ fours_prob = 10
 fives_prob = 10
 
 #Enable Random (Enable = 1, Disable = 0), disabled will cycle from highest game mode to lowest
-random_enabled = 0
+random_enabled = 1
 
 #Set to 1 if you want a simulated kickoff when goal reset is disabled, 0 if you don't want kickoff
-simulated_kickoff = 1
+simulated_kickoff = 0
 
 
 
@@ -75,6 +75,17 @@ class RandomStandard(BaseScript):
             #Checks if goal has been scored and picks a random game mode
             if packet.teams[0].score + packet.teams[1].score != old_score:
                 old_score = packet.teams[0].score + packet.teams[1].score
+                
+                #After Goal is scored, give bots 33 boost. Fixes unlimited boost 0 issue. 
+                car_states = {}
+                for p in range(0,packet.num_cars):
+                         car_state = CarState(boost_amount=33)
+                         car_states[p] = car_state
+                        
+                self.paused_car_states = car_states
+                self.game_state = GameState(cars=car_states)
+                self.set_game_state(self.game_state)  
+                
                 
                 #Check if should simulated kickoff
                 if disabled_goal_reset == 1 and simulated_kickoff == 1:
