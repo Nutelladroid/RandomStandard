@@ -18,7 +18,7 @@ fives_prob = 10
 random_enabled = 1
 
 #Set to 1 if you want a simulated kickoff when goal reset is disabled, 0 if you don't want kickoff
-simulated_kickoff = 1
+simulated_kickoff = 0
 
 
 
@@ -76,12 +76,12 @@ class RandomStandard(BaseScript):
             if packet.teams[0].score + packet.teams[1].score != old_score:
                 old_score = packet.teams[0].score + packet.teams[1].score
                 
-                #After Goal is scored, give bots 33 boost. Fixes unlimited boost 0 issue. 
+                #After Goal is scored, give bots outside 33 boost. Fixes unlimited boost 0 issue. 
                 car_states = {}
-                for p in range(0,packet.num_cars):
-                         car_state = CarState(boost_amount=33)
-                         car_states[p] = car_state
-                        
+                for p in range(gameM,packet.num_cars):
+                   if abs(packet.game_cars[p].physics.location.y) > 5500:
+                        car_state = CarState(boost_amount=33)
+                        car_states[p] = car_state      
                 self.paused_car_states = car_states
                 self.game_state = GameState(cars=car_states)
                 self.set_game_state(self.game_state)  
