@@ -7,8 +7,9 @@ It works by teleporting pairs of bots from each team outside the stadium after e
 
 ### Requirements
 
-Enable State Setting in Extra
-Have exactly 2v2, 3v3, 4v4 or 5v5 setup in RLBot. Anything else will not work, for example 3v1 or 6v6.
+####Enable State Setting in Extra
+
+####Have exactly 2v2, 3v3, 4v4 or 5v5 setup in RLBot. Anything else will not work, for example 3v1 or 6v6.
 
 
 ## Config
