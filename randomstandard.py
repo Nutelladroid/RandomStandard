@@ -8,20 +8,20 @@ from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
 #GameMode Probability, whole numbers only. Think of it as adding a tile to a bag where one tile is selected after every kickoff but remains in the bag.
-#Higher game modes will be ignored if not enough cars were selected in RLBot. 
+#Higher game modes will be ignored if not enough cars were selected in RLBot, script can't teleport bots that aren't there
 ones_prob = 10
 twos_prob = 10
 threes_prob = 10
 fours_prob = 10
 fives_prob = 10
 
-#Enable Random (Enable = 1, Disable = 0), disabled will cycle from highest game mode to lowest
+#Enable Random (Enable = 1, Disable = 0), disabled will cycle from highest game mode to lowest aka Cycle Mode
 random_enabled = 1
 
 #Set to 1 if you want a simulated kickoff when goal reset is disabled, 0 if you don't want kickoff
 simulated_kickoff = 1
 
-
+#Main Code, probably shouldn't touch
 
 class RandomStandard(BaseScript):
     def __init__(self):
@@ -281,14 +281,15 @@ class RandomStandard(BaseScript):
     
     
     
-    
+    #Simulated Kickoff Code, max 5 players per team
     def setup_kickoff(self, packet):
      if packet.num_cars == 4 or packet.num_cars == 6 or packet.num_cars == 8 or packet.num_cars == 10:
             car_states = {}
-            numC = round(packet.num_cars *0.5)     # set the number to select here.
+            numC = round(packet.num_cars *0.5)     # number of cars on each team
             rand_kick = random.sample(range(5), numC)
             for p in range(packet.num_cars):
                 car = packet.game_cars[p]
+                #Team 0 locations
                 if car.team == 0:
                     if rand_kick[p] == 0:
                         pos = Vector3(-2048, -2560, 17)
@@ -308,6 +309,7 @@ class RandomStandard(BaseScript):
                     car_state = CarState(boost_amount=34, physics=Physics(location=pos, rotation=Rotator(yaw=yaw, pitch=0, roll=0), velocity=Vector3(0, 0, 0),
                             angular_velocity=Vector3(0, 0, 0)))
                     car_states[p] = car_state
+                #Team 1 locations
                 elif car.team == 1:
                     if rand_kick[p-numC] == 0:
                         pos = Vector3(2048, 2560, 17)
