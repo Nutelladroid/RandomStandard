@@ -32,7 +32,7 @@ Default is random enabled, which follows the probability settings.
 ```json
 random_enabled = 1
 ```
-If it is set to 0 it will disable random mode and instead cycle from the highest possible mode to the lowest. For example, 3v3 then 2v2 then 1v1 then 3v3 then 2v2 etc.
+If it is set to 0, it will disable random mode and instead cycle from the highest possible mode to the lowest. For example, 3v3 then 2v2 then 1v1 then 3v3 then 2v2 etc.
 ```json
 random_enabled = 0
 ```
