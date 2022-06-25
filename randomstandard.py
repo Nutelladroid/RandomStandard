@@ -7,7 +7,8 @@ from rlbot.utils.game_state_util import GameState, BallState, CarState, Physics,
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
-#GameMode Probability, whole numbers only
+#GameMode Probability, whole numbers only. Think of it as adding a tile to a bag where one tile is selected after every kickoff but remains in the bag.
+#Higher game modes will be ignored if not enough cars were selected in RLBot. 
 ones_prob = 10
 twos_prob = 10
 threes_prob = 10
