@@ -16,7 +16,7 @@ It works by teleporting pairs of bots from each team outside the stadium after e
 
 ### Change Probability
 
-You can change probability of each mode appearing. It works like adding tiles to a bag and then selecting a tile after every goal. If higher game modes are not possible they will be ignored when randomly selecting a mode. Default is everything has an equal chance of appearing.
+You can change probability of each mode appearing. It works like adding X number of tiles of each game mode to a bag and then selecting a tile after every goal. When higher game modes are not possible, they will be ignored when randomly selecting a mode. The default config is equal chance for every game mode being selected.
 
 ```json
 ones_prob = 10
