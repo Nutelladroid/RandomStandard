@@ -1,33 +1,44 @@
 import time
 import random
 import numpy as np 
+import configparser 
+import os
 
 from rlbot.agents.base_script import BaseScript
 from rlbot.utils.game_state_util import GameState, BallState, CarState, Physics, Vector3, Rotator, GameInfoState
 from rlbot.utils.structures.game_data_struct import GameTickPacket
 
 
-#GameMode Probability, whole numbers only. Think of it as adding a tile to a bag where one tile is selected after every kickoff but remains in the bag.
-#Higher game modes will be ignored if not enough cars were selected in RLBot, script can't teleport bots that aren't there
-ones_prob = 10
-twos_prob = 10
-threes_prob = 10
-fours_prob = 10
-fives_prob = 10
-
-#Enable Random (Enable = 1, Disable = 0), disabled will cycle from highest game mode to lowest aka Cycle Mode
-random_enabled = 1
-
-#Set to 1 if you want a simulated kickoff when goal reset is disabled, 0 if you don't want kickoff
-simulated_kickoff = 1
-
-#Main Code, probably shouldn't touch
-
 class RandomStandard(BaseScript):
     def __init__(self):
         super().__init__("Random Standard")
+    
+    def get_bool_from_config(self, section, option):
+        return True if self.config.get(section, option).lower() in {"true", "1"} else False
 
+    def get_float_from_config(self, section, option):
+        return float(self.config.get(section, option))
+
+    def get_int_from_config(self, section, option):
+        return int(self.get_float_from_config(section, option))
+    
     def start(self):
+        #Imports config settings
+        self.config = configparser.ConfigParser()
+        file_path =os.path.join(os.path.dirname(os.path.realpath(__file__)), "randomstandard.cfg")
+        self.config.read(file_path, encoding="utf8")
+ 
+        ones_prob =  self.get_int_from_config('Options', 'ones_prob')
+        twos_prob =  self.get_int_from_config('Options', 'twos_prob')
+        threes_prob =  self.get_int_from_config('Options', 'threes_prob')
+        fours_prob =  self.get_int_from_config('Options', 'fours_prob')
+        fives_prob =  self.get_int_from_config('Options', 'fives_prob')
+        
+        random_enabled = self.get_int_from_config('Options', 'random_enabled')
+        
+        simulated_kickoff = self.get_int_from_config('Options', 'simulated_kickoff')
+    
+    
         #Set up old score
         old_score = 0
         #Creates a list to control the probablitly of the random choice later
