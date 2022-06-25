@@ -4,4 +4,5 @@ It works by teleporting pairs of bots from each team outside the stadium after e
 
 You can change the probability or randomness of each mode appearing at the top of the .py file.
 You can also enable or disable simulated kickoff for when goal reset is disabled.
-Demo: https://www.youtube.com/watch?v=bzw3wnuuX8g
+If you don't like the randomness, you can disable it and make it cycle down between modes.
+Demo: https://www.youtube.com/watch?v=S6oEaRY80hM&list=PLVspUqS8ynF_PVFbdTlHKl1gNgF6Yu-Ly&index=2
