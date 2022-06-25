@@ -9,14 +9,14 @@ It works by teleporting pairs of bots from each team outside the stadium after e
 
 -Enable State Setting in Extra
 
--Have exactly 2v2, 3v3, 4v4 or 5v5 setup in RLBot. Anything else will not work, for example 3v1 or 6v6.
+-Have exactly 2v2, 3v3, 4v4 or 5v5 setup in RLBot. Anything else will not work, for example, 3v1 or 6v6.
 
 
 ## Config
 
 ### Change Probability
 
-You can change probability of each mode appearing. It works like adding X number of tiles of each game mode to a bag and then selecting a tile after every goal. When higher game modes are not possible, they will be ignored when randomly selecting a mode. The default config is equal chance for every game mode being selected.
+You can change the probability of each mode appearing. It works like adding X number of tiles of each game mode to a bag and then selecting a tile after every goal. When higher game modes are not possible, they will be ignored when randomly selecting a mode. The default config is equal chance for every game mode being selected.
 
 ```json
 ones_prob = 10
