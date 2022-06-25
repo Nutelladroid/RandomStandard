@@ -3,7 +3,7 @@
 ## Description
 
 Script for RLBot which picks a random standard mode (1v1, 2v2, 3v3, 4v4, 5v5) after every kickoff.
-It works by teleporting pairs of bots from each team outside the stadium after every goal.
+It works by teleporting pairs of bots from each team outside the stadium after every goal. Demo video: https://www.youtube.com/watch?v=bzw3wnuuX8g
 
 ### Requirements
 
